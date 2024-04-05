@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Link Generator</title>
+    <style>
+        /* Adding some padding and margin for better spacing */
+        #urlInput, button {
+            margin-bottom: 10px; /* Space between the input/button and the next element */
+        }
+
+        #linkList a {
+            display: block; /* Ensure each link is on its own line */
+            padding: 5px 0; /* Add some padding above and below each link */
+            margin-bottom: 5px; /* Space between links */
+        }
+    </style>
+</head>
+<body>
+    <!-- Input for the URL -->
+    <input type="text" id="urlInput" placeholder="Enter website link here" style="padding: 10px; margin-bottom: 10px;" />
+    <!-- Button to trigger link addition -->
+    <button onclick="addLink()" style="padding: 10px; margin-bottom: 20px;">Add Link</button>
+    <!-- Container for the dynamically added links -->
+    <div id="linkList"></div>
+
+    <script>
+        function addLink() {
+            // Get the URL from the input
+            const url = document.getElementById('urlInput').value;
+
+            // Validate the input to ensure it's not empty
+            if(url.trim() === '') {
+                alert('Please enter a valid URL.');
+                return;
+            }
+
+            // Create a new anchor (<a>) element
+            const link = document.createElement('a');
+            link.href = url;
+            link.textContent = url;
+            link.target = '_blank'; // Open in new tab
+
+            // Append the new link to the container
+            document.getElementById('linkList').appendChild(link);
+
+            // Clear the input field for the next URL
+            document.getElementById('urlInput').value = '';
+        }
+    </script>
+</body>
+</html>
